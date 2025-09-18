@@ -21,7 +21,9 @@ ClubActivities
 	   StartDate = x.StartDate,
 	   Location = x.Location,
 	   Club = x.Club.ClubName,
-	   Activity = x.Description
+	   Activity = x.Name
 	})
 	.OrderBy(x => x.StartDate)
 	.Dump();
+	
+//Question 2

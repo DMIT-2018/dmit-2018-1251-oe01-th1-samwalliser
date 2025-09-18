@@ -14,3 +14,14 @@
 </Query>
 
 //Question 1
+ClubActivities
+	.Where(x => x.StartDate >= new DateTime(2025, 1, 1))
+	.Select(x => new 
+	{
+	   StartDate = x.StartDate,
+	   Location = x.Location,
+	   Club = x.Club.ClubName,
+	   Activity = x.Description
+	})
+	.OrderBy(x => x.StartDate)
+	.Dump();

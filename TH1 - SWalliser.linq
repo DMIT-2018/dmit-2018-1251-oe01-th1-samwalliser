@@ -15,11 +15,11 @@
 
 //Question 1
 ClubActivities
-	.Where(x => x.StartDate >= new DateTime(2025, 1, 1))
+	.Where(x => x.StartDate >= new DateTime(2025, 01, 01))
 	.Select(x => new 
 	{
 	   StartDate = x.StartDate,
-	   Location = x.Location,
+	   Location = x.CampusVenue.Location,
 	   Club = x.Club.ClubName,
 	   Activity = x.Name
 	})
@@ -27,3 +27,18 @@ ClubActivities
 	.Dump();
 	
 //Question 2
+Programs
+	.Where(x => x.ProgramCourses.Count(x => x.Required) >= 22)
+	.Select(x => new
+	{
+		School = x.SchoolCode == "SAMIT"
+					? "School of Advance Media and IT"
+					: x.SchoolCode == "SEET"
+						? "School of Electrical Engineering Technology"
+						: "Unknown",
+		Program = x.ProgramName,
+		RequiredCourseCount = x.ProgramCourses.Count(x => x.Required),
+		OptionalCourseCount = x.ProgramCourses.Count(x => !x.Required)
+	})
+	.OrderBy(x => x.Program)
+	.Dump();

@@ -42,3 +42,18 @@ Programs
 	})
 	.OrderBy(x => x.Program)
 	.Dump();
+
+//Question 3
+Students
+	.Where(x => x.StudentPayments.Count() == 0 && x.Countries.CountryName != "CANADA")
+	.OrderBy(x => x.LastName)
+	.Select(x => new 
+	{
+	    StudentNumber = x.StudentNumber,
+		CounrtryName = x.Countries.CountryName,
+		FullName = x.FirstName + " " + x.LastName,
+		ClubMembershipCount = x.ClubMembers.Count() == 0
+		                      ? "None"
+							  : x.ClubMembers.Count().ToString()
+	})
+	.Dump();

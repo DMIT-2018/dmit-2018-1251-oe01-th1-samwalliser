@@ -90,6 +90,7 @@ Clubs
 			? "None Schedule"
 			: ClubActivities.Count(ca => ca.ClubID == x.ClubID).ToString()
 	})
+	.OrderByDescending(x => x.MemberCount)
 	.Dump();
 
 

@@ -75,9 +75,22 @@ Employees
 					: "Low"
 	})
 	.Dump();
-	
-//Question 5
 
+//Question 5
+Clubs
+	.Where(x => x.ClubName != null)
+	.Select(x => new
+	{
+		Supervisor = Employees.Count(e => e.EmployeeID == x.EmployeeID) == 1
+			? Employees.First(e => e.EmployeeID == x.EmployeeID).FirstName + " " + Employees.First(e => e.EmployeeID == x.EmployeeID).LastName
+			: "Unknown",
+		Club = x.ClubName,
+		MemberCount = ClubMembers.Count(cm => cm.ClubID == x.ClubID),
+		Activities = ClubActivities.Count(ca => ca.ClubID == x.ClubID) == 0
+			? "None Schedule"
+			: ClubActivities.Count(ca => ca.ClubID == x.ClubID).ToString()
+	})
+	.Dump();
 
 
 

@@ -81,8 +81,8 @@ Clubs
 	.Where(x => x.ClubName != null)
 	.Select(x => new
 	{
-		Supervisor = Employees.Count(e => e.EmployeeID == x.EmployeeID) == 1
-			? Employees.First(e => e.EmployeeID == x.EmployeeID).FirstName + " " + Employees.First(e => e.EmployeeID == x.EmployeeID).LastName
+		Supervisor = x.Employee != null
+			? x.Employee.FirstName + " " + x.Employee.LastName
 			: "Unknown",
 		Club = x.ClubName,
 		MemberCount = ClubMembers.Count(cm => cm.ClubID == x.ClubID),

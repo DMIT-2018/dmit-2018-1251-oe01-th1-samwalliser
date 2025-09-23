@@ -15,7 +15,9 @@
 
 //Question 1
 ClubActivities
-	.Where(x => x.StartDate >= new DateTime(2025, 01, 01))
+	.Where(x => x.StartDate >= new DateTime(2025, 01, 01) 
+				&& x.CampusVenue.Location != "Scheduled Room" 
+				&& x.Name != "BTech Club Meeting")
 	.Select(x => new 
 	{
 	   StartDate = x.StartDate,
